@@ -1,3 +1,4 @@
+[![Build status](https://travis-ci.org/idoshamun/emoji-parser.svg?branch=master)](https://travis-ci.org/idoshamun/emoji-parser)
 
 ##&lt;emoji-parser&gt;
 
