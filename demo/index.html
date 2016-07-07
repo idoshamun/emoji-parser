@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>emoji-parser demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+  <link rel="import" href="../emoji-parser.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+  </style>
+</head>
+<body>
+
+<div class="vertical-section-container centered">
+  <h3>Basic emoji-parser Demo</h3>
+  <demo-snippet>
+    <template>
+      <emoji-parser content="Hello World :grin:" include-title></emoji-parser>
+    </template>
+  </demo-snippet>
+
+  <demo-snippet>
+    <template>
+      <emoji-parser content="Hello World &#x1F601;" method="unified"></emoji-parser>
+    </template>
+  </demo-snippet>
+</div>
+
+</body>
+</html>

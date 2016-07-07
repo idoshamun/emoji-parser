@@ -1,0 +1,27 @@
+{
+  "name": "emoji-parser",
+  "version": "0.0.0",
+  "description": "Transforms a text with colons/unicode based emojis into a HTML which shows them using js-emoji",
+  "main": "emoji-parser.html",
+  "license": "LICENSE",
+  "homepage": "https://github.com/idoshamun/emoji-parser/",
+  "authors": [
+    "Ido Shamun <idoesh1@gmail.com>"
+  ],
+  "keywords": [
+    "emoji",
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "js-emoji": "^3.0.2",
+    "emoji-data": "^2.4.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

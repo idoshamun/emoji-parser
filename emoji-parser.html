@@ -1,0 +1,174 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`<emoji-parser>` transforms a text with colons/unicode based emojis into a HTML which shows them.
+For more information about the parsing and the parameter, please refer to [js-emoji](https://github.com/iamcal/js-emoji).
+
+
+### Styling
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--emoji-size` | The emoji span size | `1.3em`
+
+@element emoji-parser
+@demo demo/index.html 
+-->
+
+<dom-module id="emoji-parser">
+  <template>
+    <style>
+      :host {
+        --emoji-size: 1.3em;
+
+        line-height: var(--emoji-size);
+      }
+
+      span.emoji {
+        display: inline-block;
+        vertical-align: bottom;
+        width: 1em;
+        height: 1em;
+        background-size: 1em;
+        background-repeat: no-repeat;
+        background-position: 50%, 50%;
+      }
+
+      span.emoji-sizer {
+        font-size: var(--emoji-size);
+      }
+
+      span.emoji-outer {
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+      }
+
+      span.emoji-inner {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+      }
+
+      img.emoji {
+        width: 1em;
+        height: 1em;
+      }
+    </style>
+  </template>
+
+  <script src="../js-emoji/lib/emoji.min.js"></script>
+  <script>
+    Polymer({
+
+      is: 'emoji-parser',
+
+      properties: {
+        /**
+         * The path to the emoji image sets (requires trailing slash).
+         * The default images are included thanks to [emoji-data](https://github.com/iamcal/emoji-data)
+         */
+        imgSets: {
+          type: Object,
+          value: {
+            apple: {
+              path: '../../emoji-data/img-apple-64/',
+              sheet: '../../emoji-data/sheet_apple_64.png',
+              mask: 1
+            },
+            google: {
+              path: '../../emoji-data/img-google-64/',
+              sheet: '../../emoji-data/sheet_google_64.png',
+              mask: 2
+            },
+            twitter: {
+              path: '../../emoji-data/img-twitter-64/',
+              sheet: '../../emoji-data/sheet_twitter_64.png',
+              mask: 4
+            },
+            emojione: {
+              path: '../../emoji-data/img-emojione-64/',
+              sheet: '../../emoji-data/sheet_emojione_64.png',
+              mask: 8
+            }
+          }
+        },
+        /**
+         * Should add the emoji short-name as a `title` attribute
+         */
+        includeTitle: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * Should force output to text
+         */
+        textMode: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * Should use one sheet for all emojis instead of one image for each emoji
+         */
+        useSheet: {
+          type: Boolean,
+          value: false
+        },
+        /**
+         * The method to use to look for emoji (colons/unified)
+         */
+        method: {
+          type: String,
+          value: 'colons'
+        },
+        /**
+         * The emoji image set to use (apple/google/twitter/emojione)
+         */
+        imgSet: {
+          type: String,
+          value: 'apple'
+        },
+        /**
+         * The content of the element which contains the emoji
+         */
+        content: String,
+        /**
+         * The html string of the parsed content
+         */
+        parsedContent: {
+          type: String,
+          computed: '_parseContent(content, imgSet, imgSets, includeTitle, textMode, useSheet)',
+          observer: '_handleParsedContentChanged'
+        }
+      },
+
+      created: function() {
+        this.emojiConvertor = new EmojiConvertor();
+      },
+
+      _parseContent: function(content, imgSet, imgSets, includeTitle, textMode, useSheet) {
+        this.emojiConvertor.img_sets = imgSets;
+        this.emojiConvertor.include_title = includeTitle;
+        this.emojiConvertor.text_mode = textMode;
+        this.emojiConvertor.use_sheet = useSheet;
+        this.emojiConvertor.img_set = imgSet;
+
+        if (this.method === 'colons') {
+          return this.emojiConvertor.replace_colons(content);
+        }
+        else if (this.method === 'unified') {
+          return this.emojiConvertor.replace_unified(content);
+        }
+
+        throw new Error('The replacement method is not supported!');
+      },
+
+      _handleParsedContentChanged: function(newValue) {
+        Polymer.dom(this.root).innerHTML = newValue;
+      }
+
+    });
+  </script>
+</dom-module>
