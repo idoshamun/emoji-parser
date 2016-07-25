@@ -11,6 +11,7 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--emoji-size` | The emoji span size | `1.3em`
+`--emoji-vertical-align` | The emoji vertical align | `bottom`
 
 @element emoji-parser
 @demo demo/index.html 
@@ -21,13 +22,14 @@ Custom property | Description | Default
     <style>
       :host {
         --emoji-size: 1.3em;
+        --emoji-vertical-align: bottom;
 
         line-height: var(--emoji-size);
       }
 
       span.emoji {
         display: inline-block;
-        vertical-align: bottom;
+        vertical-align: var(--emoji-vertical-align);
         width: 1em;
         height: 1em;
         background-size: 1em;

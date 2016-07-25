@@ -19,5 +19,6 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--emoji-size` | The emoji span size | `1.3em`
+`--emoji-vertical-align` | The emoji vertical align | `bottom`
  
 
