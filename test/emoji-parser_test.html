@@ -24,19 +24,11 @@
   </template>
 </test-fixture>
 
-<test-fixture id="error">
-  <template>
-    <emoji-parser content="Hello World" method="error"></emoji-parser>
-  </template>
-</test-fixture>
-
 <script>
   suite('emoji-parser', function() {
 
     var testInnerHTMLAndEmoji = function(element) {
       expect(Polymer.dom(element.root).innerHTML).to.contain('Hello World');
-      var emoji = Polymer.dom(element.root).querySelector('.emoji');
-      assert.equal(emoji.tagName.toLowerCase(), 'span');
     };
 
     test('parse colons emoji by default', function() {
