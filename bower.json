@@ -1,6 +1,6 @@
 {
   "name": "polymer-emoji-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Transforms a text with colons/unicode based emojis into a HTML which shows them using js-emoji",
   "main": "emoji-parser.html",
   "license": "LICENSE",
